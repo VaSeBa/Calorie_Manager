@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.repository.inmemory;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -78,3 +79,4 @@ public class InMemoryMealRepository implements MealRepository {
                         .collect(Collectors.toList());
     }
 }
+

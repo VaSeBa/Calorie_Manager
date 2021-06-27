@@ -1,5 +1,7 @@
 package ru.javawebinar.topjava.service;
 
+import org.junit.AfterClass;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
+import ru.javawebinar.topjava.JUnitStat;
 import ru.javawebinar.topjava.UserTestData;
 import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
@@ -29,60 +32,68 @@ public class UserServiceTest {
     @Autowired
     private UserService service;
 
+    @Rule
+    public JUnitStat stat = new JUnitStat();
+
+    @AfterClass
+    public static void printStat() {
+        JUnitStat.printStatistic();
+    }
+
     @Test
-    public void create() {
+    public void create() throws Exception {
         User created = service.create(getNew());
         int newId = created.id();
         User newUser = getNew();
         newUser.setId(newId);
-        MATCHER.assertMatch(created, newUser);
-        MATCHER.assertMatch(service.get(newId), newUser);
+        USER_MATCHER.assertMatch(created, newUser);
+        USER_MATCHER.assertMatch(service.get(newId), newUser);
     }
 
     @Test
-    public void duplicateMailCreate() {
+    public void duplicateMailCreate() throws Exception {
         assertThrows(DataAccessException.class, () ->
                 service.create(new User(null, "Duplicate", "user@yandex.ru", "newPass", Role.USER)));
     }
 
     @Test
-    public void delete() {
+    public void delete() throws Exception {
         service.delete(USER_ID);
         assertThrows(NotFoundException.class, () -> service.get(USER_ID));
     }
 
     @Test
-    public void deletedNotFound() {
+    public void deletedNotFound() throws Exception {
         assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND));
     }
 
     @Test
-    public void get() {
+    public void get() throws Exception {
         User user = service.get(USER_ID);
-        MATCHER.assertMatch(user, UserTestData.user);
+        USER_MATCHER.assertMatch(user, UserTestData.user);
     }
 
     @Test
-    public void getNotFound() {
+    public void getNotFound() throws Exception {
         assertThrows(NotFoundException.class, () -> service.get(NOT_FOUND));
     }
 
     @Test
-    public void getByEmail() {
+    public void getByEmail() throws Exception {
         User user = service.getByEmail("admin@gmail.com");
-        MATCHER.assertMatch(user, admin);
+        USER_MATCHER.assertMatch(user, admin);
     }
 
     @Test
-    public void update() {
+    public void update() throws Exception {
         User updated = getUpdated();
         service.update(updated);
-        MATCHER.assertMatch(service.get(USER_ID), getUpdated());
+        USER_MATCHER.assertMatch(service.get(USER_ID), getUpdated());
     }
 
     @Test
-    public void getAll() {
+    public void getAll() throws Exception {
         List<User> all = service.getAll();
-        MATCHER.assertMatch(all, admin, user);
+        USER_MATCHER.assertMatch(all, admin, user);
     }
 }

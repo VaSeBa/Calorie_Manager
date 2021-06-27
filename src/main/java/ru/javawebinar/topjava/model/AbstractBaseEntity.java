@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.model;
 
+import org.hibernate.Hibernate;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -30,8 +31,9 @@ public abstract class AbstractBaseEntity {
         return id;
     }
 
+    // doesn't work for hibernate lazy proxy
     public int id() {
-        Assert.notNull(id, "Entity must have id");
+        Assert.notNull(id, "Entity must has id");
         return id;
     }
 
@@ -49,7 +51,7 @@ public abstract class AbstractBaseEntity {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || !getClass().equals(Hibernate.getClass(o))) {
             return false;
         }
         AbstractBaseEntity that = (AbstractBaseEntity) o;
