@@ -5,7 +5,7 @@
     <jmxConfigurator/>
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>/run/media/vaseba/c5098010-c114-4a1a-9f5e-8b292d935d64/Project/topjava/src/main/resources//log</file>
+        <file>/run/media/vaseba/HDD/Projects/Top_Java/src/main/resources/log</file>
 
         <encoder>
             <charset>UTF-8</charset>
