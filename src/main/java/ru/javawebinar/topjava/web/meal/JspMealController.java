@@ -50,6 +50,7 @@ public class JspMealController extends MealController {
         Meal meal = new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000);
         request.setAttribute("meal", meal);
         return "mealForm";
+
     }
 
     @PostMapping("/save")
