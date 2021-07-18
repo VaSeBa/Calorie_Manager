@@ -9,5 +9,4 @@
     <base href="${pageContext.request.contextPath}/">
 
     <link rel="stylesheet" href="resources/css/style.css">
-
 </head>
