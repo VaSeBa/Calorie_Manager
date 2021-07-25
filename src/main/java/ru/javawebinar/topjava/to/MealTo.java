@@ -51,4 +51,28 @@ public class MealTo {
                 ", excess=" + excess +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MealTo)) return false;
+
+        MealTo mealTo = (MealTo) o;
+
+        if (getCalories() != mealTo.getCalories()) return false;
+        if (isExcess() != mealTo.isExcess()) return false;
+        if (!getId().equals(mealTo.getId())) return false;
+        if (!getDateTime().equals(mealTo.getDateTime())) return false;
+        return getDescription().equals(mealTo.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getDateTime().hashCode();
+        result = 31 * result + getDescription().hashCode();
+        result = 31 * result + getCalories();
+        result = 31 * result + (isExcess() ? 1 : 0);
+        return result;
+    }
 }
