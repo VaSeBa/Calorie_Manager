@@ -12,6 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.javawebinar.topjava.UserTestData.*;
 import static ru.javawebinar.topjava.util.MealsUtil.getTos;
 import static ru.javawebinar.topjava.MealTestData.meals;
+
 class RootControllerTest extends AbstractControllerTest {
 
     @Test
