@@ -11,8 +11,6 @@ import ru.javawebinar.topjava.TimingExtension;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.javawebinar.topjava.util.ValidationUtil.getRootCause;
 
-import static ru.javawebinar.topjava.util.ValidationUtil.getRootCause;
-
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-app.xml",
         "classpath:spring/spring-db.xml"
