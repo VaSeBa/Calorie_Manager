@@ -4,15 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.javawebinar.topjava.model.User;
+import ru.javawebinar.topjava.web.SecurityUtil;
 
 import static ru.javawebinar.topjava.web.SecurityUtil.authUserId;
 
 @RestController
-@RequestMapping(value = ProfileRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(ProfileRestController.REST_URL)
 public class ProfileRestController extends AbstractUserController {
     static final String REST_URL = "/rest/profile";
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public User get() {
         return super.get(authUserId());
     }
@@ -29,13 +30,14 @@ public class ProfileRestController extends AbstractUserController {
         super.update(user, authUserId());
     }
 
-    @GetMapping("/text")
+    @GetMapping(value = "/text")
     public String testUTF() {
         return "Русский текст";
     }
 
-    @GetMapping("/with-meals")
+
+    @GetMapping(value = "/with-meals", produces = MediaType.APPLICATION_JSON_VALUE)
     public User getWithMeals() {
-        return super.getWithMeals(authUserId());
+        return super.getWithMeals(SecurityUtil.authUserId());
     }
 }
