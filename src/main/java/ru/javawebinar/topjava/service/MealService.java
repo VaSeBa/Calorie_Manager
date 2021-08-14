@@ -30,8 +30,12 @@ public class MealService {
         checkNotFoundWithId(repository.delete(id, userId), id);
     }
 
-    public List<Meal> getBetweenInclusive(@Nullable LocalDate startDate, @Nullable LocalDate endDate, int userId) {
-        return repository.getBetweenHalfOpen(atStartOfDayOrMin(startDate), atStartOfNextDayOrMax(endDate), userId);
+    public List<Meal> getBetweenInclusive(@Nullable LocalDate startDate,
+                                          @Nullable LocalDate endDate,
+                                          int userId) {
+        return repository.getBetweenHalfOpen(atStartOfDayOrMin(startDate),
+                atStartOfNextDayOrMax(endDate),
+                userId);
     }
 
     public List<Meal> getAll(int userId) {
