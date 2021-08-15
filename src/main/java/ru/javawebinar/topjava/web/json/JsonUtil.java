@@ -3,6 +3,7 @@ package ru.javawebinar.topjava.web.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,5 +43,13 @@ public class JsonUtil {
         Map<String, Object> map = getMapper().convertValue(obj, new TypeReference<>() {});
         map.keySet().removeAll(Set.of(ignoreProps));
         return writeValue(map);
+    }
+
+    public static <T> String writeValue(T obj, ObjectWriter ow) {
+        try {
+            return ow.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("Invalid write to JSON:\n'" + obj + "'", e);
+        }
     }
 }
