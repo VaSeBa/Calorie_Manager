@@ -7,6 +7,6 @@ Spring/JPA Enterprise приложения c авторизацией и пра�
 
 Maven, Spring MVC, Security, JPA(Hibernate), Bootstrap (css,js), jQuery и хранением в базах данных Postgresql и HSQLDB.
 
-![topjava_structure](https://user-images.githubusercontent.com/13649199/27433714-8294e6fe-575e-11e7-9c41-7f6e16c5ebe5.jpg)
+![Screenshot_20211018_220817](https://user-images.githubusercontent.com/67800458/137792004-876d4ebc-be69-429c-858b-a41bad7774d2.png)
 
 
